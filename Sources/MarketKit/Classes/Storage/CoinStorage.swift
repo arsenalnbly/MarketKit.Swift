@@ -316,6 +316,8 @@ extension CoinStorage {
                             decimals : 18,
                             reference : "")
             .insert(db)
+            
+            print("Added nexus to Database")
         }
         
     }
