@@ -297,7 +297,26 @@ extension CoinStorage {
             for tokenRecord in tokenRecords {
                 try? tokenRecord.insert(db)
             }
+            
+            try Coin(uid : "nexus-testnet-iii-coin",
+                 name : "Nexus Token (NEX)",
+                 code : "NEX",
+                 marketCapRank : 3940,
+                 coinGeckoId : "nexus-testnet-iii",
+                 image : "https://pbs.twimg.com/profile_images/1887351274955546627/jlvN83vR_400x400.jpg")
+            .insert(db)
+            
+            try BlockchainRecord(uid : "nexus-testnet-iii",
+                                 name : "Nexus Testnet III")
+            
+            try TokenRecord(coinUid : "nexus-testnet-iii-coin",
+                            blockchainUid : "nexus-testnet-iii",
+                            type : "native",
+                            decimals : 18,
+                            reference : "")
+            .insert(db)
         }
+        
     }
 }
 

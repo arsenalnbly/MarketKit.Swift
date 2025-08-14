@@ -15,6 +15,14 @@ class BlockchainRecord: Record, Decodable, ImmutableMappable {
     enum Columns: String, ColumnExpression {
         case uid, name, explorerUrl
     }
+    
+    init(uid: String, name: String, explorerUrl: String? = nil) {
+        self.uid = uid
+        self.name = name
+        self.explorerUrl = explorerUrl
+        
+        super.init()
+    }
 
     required init(map: Map) throws {
         uid = try map.value("uid")
