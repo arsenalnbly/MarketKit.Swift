@@ -313,7 +313,8 @@ extension CoinStorage {
         try coin.insert(db)
         
         let blockchainRecord =  BlockchainRecord(uid : "nexus-testnet-iii",
-                             name : "Nexus Testnet III")
+                             name : "Nexus Testnet III",
+                             explorerUrl: "https://testnet3.explorer.nexus.xyz")
         try blockchainRecord.insert(db)
         
         let tokenRecord = TokenRecord(coinUid : "nexus-testnet-iii-coin",
