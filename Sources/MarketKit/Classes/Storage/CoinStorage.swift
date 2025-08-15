@@ -298,28 +298,32 @@ extension CoinStorage {
                 try? tokenRecord.insert(db)
             }
             
-            let coin = Coin(uid : "nexus-testnet-iii-coin",
-                 name : "Nexus Token (NEX)",
-                 code : "NEX",
-                 marketCapRank : 3940,
-                 coinGeckoId : "nexus-testnet-iii",
-                 image : "https://pbs.twimg.com/profile_images/1887351274955546627/jlvN83vR_400x400.jpg")
-            try coin.insert(db)
-            
-            let blockchainRecord =  BlockchainRecord(uid : "nexus-testnet-iii",
-                                 name : "Nexus Testnet III")
-            try blockchainRecord.insert(db)
-            
-            let tokenRecord = TokenRecord(coinUid : "nexus-testnet-iii-coin",
-                            blockchainUid : "nexus-testnet-iii",
-                            type : "native",
-                            decimals : 18,
-                            reference : "")
-            try tokenRecord.insert(db)
-            
-            print("Added nexus to Database")
+            try addNexusBlockchain(db)
         }
         
+    }
+    
+    func addNexusBlockchain(_ db: Database) throws {
+        let coin = Coin(uid : "nexus-testnet-iii-coin",
+             name : "Nexus Token (NEX)",
+             code : "NEX",
+             marketCapRank : 3940,
+             coinGeckoId : "nexus-testnet-iii",
+             image : "https://pbs.twimg.com/profile_images/1887351274955546627/jlvN83vR_400x400.jpg")
+        try coin.insert(db)
+        
+        let blockchainRecord =  BlockchainRecord(uid : "nexus-testnet-iii",
+                             name : "Nexus Testnet III")
+        try blockchainRecord.insert(db)
+        
+        let tokenRecord = TokenRecord(coinUid : "nexus-testnet-iii-coin",
+                        blockchainUid : "nexus-testnet-iii",
+                        type : "native",
+                        decimals : 18,
+                        reference : "")
+        try tokenRecord.insert(db)
+        
+        print("Added nexus to Database")
     }
 }
 
