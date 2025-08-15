@@ -298,12 +298,12 @@ extension CoinStorage {
                 try? tokenRecord.insert(db)
             }
             
-            try addNexusBlockchain(db)
+            try addNexusCoin(db)
         }
         
     }
     
-    func addNexusBlockchain(_ db: Database) throws {
+    func addNexusCoin(_ db: Database) throws {
         let coin = Coin(uid : "nexus-testnet-iii-coin",
              name : "Nexus Token (NEX)",
              code : "NEX",

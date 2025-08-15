@@ -57,6 +57,14 @@ public extension Kit {
     func fullCoins(coinUids: [String]) throws -> [FullCoin] {
         try coinManager.fullCoins(coinUids: coinUids)
     }
+    
+    func coin(uid: String) throws -> Coin? {
+        try coinManager.coin(uid: uid)
+    }
+    
+    func coins(uids: [String]) throws -> [Coin] {
+        try coinManager.coins(uids: uids)
+    }
 
     func allCoins() throws -> [Coin] {
         try coinManager.allCoins()
