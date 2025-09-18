@@ -318,7 +318,7 @@ extension CoinStorage {
 //                        code: "WLD",
 //                        marketCapRank: 41,
 //                        coinGeckoId: "worldcoin-wld",
-//                        image: "https://s2.coinmarketcap.com/static/img/coins/200x200/13502.png")
+//                        image: "https://cdn.blocksdecoded.com/blockchain-icons/32px/world-chain@3x.png")
 //        try coin.insert(db)
         
         let blockchainRecord = BlockchainRecord(uid: "worldchain",
