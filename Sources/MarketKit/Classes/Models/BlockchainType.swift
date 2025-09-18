@@ -21,6 +21,7 @@ public enum BlockchainType {
     case zkSync
     case stellar
     case nexus
+    case worldchain
     case unsupported(uid: String)
 
     public init(uid: String) {
@@ -47,6 +48,7 @@ public enum BlockchainType {
         case "zksync": self = .zkSync
         case "stellar": self = .stellar
         case "nexus-testnet-iii": self = .nexus
+        case "world-chain": self = .worldchain
         default: self = .unsupported(uid: uid)
         }
     }
@@ -75,6 +77,7 @@ public enum BlockchainType {
         case .zkSync: return "zksync"
         case .stellar: return "stellar"
         case .nexus: return "nexus-testnet-iii"
+        case .worldchain: return "world-chain"
         case let .unsupported(uid): return uid
         }
     }
