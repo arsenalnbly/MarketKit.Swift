@@ -312,11 +312,11 @@ extension CoinStorage {
     }
     
     func addWorldChain(_ db: Database) throws {
-        let coin = Coin(uid: "worldcoin",
+        let coin = Coin(uid: "worldcoin-wld",
                         name: "Worldcoin (WLD)",
                         code: "WLD",
                         marketCapRank: 41,
-                        coinGeckoId: "worldcoin",
+                        coinGeckoId: "worldcoin-wld",
                         image: "https://s2.coinmarketcap.com/static/img/coins/200x200/13502.png")
         try coin.insert(db)
         
@@ -325,7 +325,7 @@ extension CoinStorage {
                                                 explorerUrl: "https://worldscan.org")
         try blockchainRecord.insert(db)
         
-        let tokenRecord = TokenRecord(coinUid: "worldcoin",
+        let tokenRecord = TokenRecord(coinUid: "worldcoin-wld",
                                       blockchainUid: "world-chain",
                                       type: "native",
                                       decimals: 18,
