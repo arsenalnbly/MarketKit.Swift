@@ -313,20 +313,20 @@ extension CoinStorage {
     }
     
     func addWorldChain(_ db: Database) throws {
-        let coin = Coin(uid: "worldcoin-wld",
-                        name: "Worldcoin (WLD)",
-                        code: "WLD",
-                        marketCapRank: 41,
-                        coinGeckoId: "worldcoin-wld",
-                        image: "https://s2.coinmarketcap.com/static/img/coins/200x200/13502.png")
-        try coin.insert(db)
+//        let coin = Coin(uid: "worldcoin-wld",
+//                        name: "Worldcoin (WLD)",
+//                        code: "WLD",
+//                        marketCapRank: 41,
+//                        coinGeckoId: "worldcoin-wld",
+//                        image: "https://s2.coinmarketcap.com/static/img/coins/200x200/13502.png")
+//        try coin.insert(db)
         
-        let blockchainRecord = BlockchainRecord(uid: "world-chain",
-                                                name: "Worldchain",
+        let blockchainRecord = BlockchainRecord(uid: "worldchain",
+                                                name: "World Chain",
                                                 explorerUrl: "https://worldscan.org")
         try blockchainRecord.insert(db)
         
-        let tokenRecord = TokenRecord(coinUid: "worldcoin-wld",
+        let tokenRecord = TokenRecord(coinUid: "ethereum",
                                       blockchainUid: "world-chain",
                                       type: "native",
                                       decimals: 18,
