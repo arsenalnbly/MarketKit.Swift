@@ -88,6 +88,11 @@ class CoinStorage {
             }
         }
         
+        migrator.registerMigration("Remove and readd worldchain from the Database") { db in
+            try self.removeWorldChain(db)
+            try self.addWorldChain(db)
+        }
+        
         migrator.registerMigration("Add Nexus coin to Database") { db in
             try self.addNexusCoin(db)
         }
@@ -313,23 +318,22 @@ extension CoinStorage {
     }
     
     func removeWorldChain(_ db: Database) throws {
-        let coin = Coin(uid: "worldcoin-wld",
+        let coin = Coin(uid: "worldcoin",
                         name: "Worldcoin (WLD)",
                         code: "WLD",
                         marketCapRank: 41,
-                        coinGeckoId: "worldcoin-wld",
-                        image: "https://cdn.blocksdecoded.com/blockchain-icons/32px/world-chain@3x.png")
+                        coinGeckoId: "worldcoin",
+                        image: "https://s2.coinmarketcap.com/static/img/coins/200x200/13502.png")
         try coin.delete(db)
         
-        let blockchainRecord = BlockchainRecord(uid: "worldchain",
-                                                name: "World Chain",
+        let blockchainRecord = BlockchainRecord(uid: "world-chain",
+                                                name: "Worldchain",
                                                 explorerUrl: "https://worldscan.org")
         try blockchainRecord.delete(db)
         
-        
-        let tokenRecord = TokenRecord(coinUid: "ethereum",
+        let tokenRecord = TokenRecord(coinUid: "worldcoin",
                                       blockchainUid: "world-chain",
-                                      type: "native",
+                                      type: "L2",
                                       decimals: 18,
                                       reference: "")
         try tokenRecord.delete(db)
