@@ -100,6 +100,10 @@ class CoinStorage {
         migrator.registerMigration("Add Worldchain to the Database") { db in
             try self.addWorldChain(db)
         }
+        
+        migrator.registerMigration("Add AGAIN Worldchain to the Database") { db in
+            try self.addWorldChain(db)
+        }
 
         return migrator
     }
