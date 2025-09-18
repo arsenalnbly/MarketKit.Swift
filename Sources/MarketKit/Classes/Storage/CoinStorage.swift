@@ -91,6 +91,10 @@ class CoinStorage {
         migrator.registerMigration("Add Nexus coin to Database") { db in
             try self.addNexusCoin(db)
         }
+        
+        migrator.registerMigration("Add Worldchain to the Database") { db in
+            try self.addWorldChain(db)
+        }
 
         return migrator
     }
@@ -305,6 +309,30 @@ extension CoinStorage {
 //            try addNexusCoin(db)
         }
         
+    }
+    
+    func addWorldChain(_ db: Database) throws {
+        let coin = Coin(uid: "worldcoin",
+                        name: "Worldcoin (WLD)",
+                        code: "WLD",
+                        marketCapRank: 41,
+                        coinGeckoId: "worldcoin",
+                        image: "https://s2.coinmarketcap.com/static/img/coins/200x200/13502.png")
+        try coin.insert(db)
+        
+        let blockchainRecord = BlockchainRecord(uid: "world-chain",
+                                                name: "Worldchain",
+                                                explorerUrl: "https://worldscan.org")
+        try blockchainRecord.insert(db)
+        
+        let tokenRecord = TokenRecord(coinUid: "worldcoin",
+                                      blockchainUid: "world-chain",
+                                      type: "L2",
+                                      decimals: 18,
+                                      reference: "")
+        try tokenRecord.insert(db)
+        
+        print("Added Worldchain to Database")
     }
     
     func addNexusCoin(_ db: Database) throws {
