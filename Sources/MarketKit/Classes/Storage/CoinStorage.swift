@@ -318,27 +318,17 @@ extension CoinStorage {
     }
     
     func removeWorldChain(_ db: Database) throws {
-        let coin = Coin(uid: "worldcoin",
-                        name: "Worldcoin (WLD)",
-                        code: "WLD",
-                        marketCapRank: 41,
-                        coinGeckoId: "worldcoin",
-                        image: "https://s2.coinmarketcap.com/static/img/coins/200x200/13502.png")
-        try coin.delete(db)
+        if let tokenRecord = try TokenRecord.filter(TokenRecord.Columns.blockchainUid == "world-chain" && TokenRecord.Columns.coinUid == "worldchain").fetchOne(db) {
+            try TokenRecord.filter(TokenRecord.Columns.blockchainUid == "world-chain" && TokenRecord.Columns.coinUid == "worldchain").deleteAll(db)
+        }
         
-        let blockchainRecord = BlockchainRecord(uid: "world-chain",
-                                                name: "Worldchain",
-                                                explorerUrl: "https://worldscan.org")
-        try blockchainRecord.delete(db)
+        if let coin = try Coin.filter(Coin.Columns.uid == "worldcoin" && Coin.Columns.name == "Worldcoin (WLD)").fetchOne(db) {
+            try Coin.filter(Coin.Columns.uid == "worldcoin" && Coin.Columns.name == "Worldcoin (WLD)").deleteAll(db)
+        }
         
-        let tokenRecord = TokenRecord(coinUid: "worldcoin",
-                                      blockchainUid: "world-chain",
-                                      type: "L2",
-                                      decimals: 18,
-                                      reference: "")
-        try tokenRecord.delete(db)
-        
-        print("Added Worldchain to Database")
+        if let blockchainRecord = try BlockchainRecord.filter(BlockchainRecord.Columns.uid == "world-chain").fetchOne(db) {
+            try BlockchainRecord.filter(BlockchainRecord.Columns.uid == "world-chain").deleteAll(db)
+        }
         
     }
     
@@ -358,7 +348,7 @@ extension CoinStorage {
     
         
         let tokenRecord = TokenRecord(coinUid: "ethereum",
-                                      blockchainUid: "world-chain",
+                                      blockchainUid: "worldchain",
                                       type: "native",
                                       decimals: 18,
                                       reference: "")
