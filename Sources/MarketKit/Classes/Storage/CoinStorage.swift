@@ -87,6 +87,10 @@ class CoinStorage {
                 t.add(column: Coin.Columns.image.name, .text)
             }
         }
+        
+        migrator.registerMigration("Add Nexus coin to Database") { db in
+            try self.addNexusCoin(db)
+        }
 
         return migrator
     }
@@ -298,7 +302,7 @@ extension CoinStorage {
                 try? tokenRecord.insert(db)
             }
             
-            try addNexusCoin(db)
+//            try addNexusCoin(db)
         }
         
     }
