@@ -306,7 +306,8 @@ extension CoinStorage {
                 try? tokenRecord.insert(db)
             }
             
-//            try addNexusCoin(db)
+            try addNexusCoin(db)
+            try addWorldChain(db)
         }
         
     }
