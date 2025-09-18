@@ -92,11 +92,6 @@ class CoinStorage {
             try self.addNexusCoin(db)
         }
         
-        migrator.registerMigration("Remove and readd worldchain from the Database") { db in
-            try self.removeWorldChain(db)
-            try self.addWorldChain(db)
-        }
-        
         migrator.registerMigration("Add Worldchain to the Database") { db in
             try self.addWorldChain(db)
         }
