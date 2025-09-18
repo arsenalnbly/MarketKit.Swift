@@ -88,8 +88,8 @@ class CoinStorage {
             }
         }
         
-        migrator.registerMigration("Remove and readd worldchain from the Database") { db in
-            try self.removeWorldChain(db)
+        migrator.registerMigration("Remove and read worldchain from the Database") { db in
+//            try self.removeWorldChain(db)
             try self.addWorldChain(db)
         }
         
