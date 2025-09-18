@@ -92,6 +92,11 @@ class CoinStorage {
             try self.addNexusCoin(db)
         }
         
+        migrator.registerMigration("Remove and readd worldchain from the Database") { db in
+            try self.removeWorldChain(db)
+            try self.addWorldChain(db)
+        }
+        
         migrator.registerMigration("Add Worldchain to the Database") { db in
             try self.addWorldChain(db)
         }
@@ -312,6 +317,32 @@ extension CoinStorage {
         
     }
     
+    func removeWorldChain(_ db: Database) throws {
+        let coin = Coin(uid: "worldcoin-wld",
+                        name: "Worldcoin (WLD)",
+                        code: "WLD",
+                        marketCapRank: 41,
+                        coinGeckoId: "worldcoin-wld",
+                        image: "https://cdn.blocksdecoded.com/blockchain-icons/32px/world-chain@3x.png")
+        try coin.delete(db)
+        
+        let blockchainRecord = BlockchainRecord(uid: "worldchain",
+                                                name: "World Chain",
+                                                explorerUrl: "https://worldscan.org")
+        try blockchainRecord.delete(db)
+        
+        
+        let tokenRecord = TokenRecord(coinUid: "ethereum",
+                                      blockchainUid: "world-chain",
+                                      type: "native",
+                                      decimals: 18,
+                                      reference: "")
+        try tokenRecord.delete(db)
+        
+        print("Added Worldchain to Database")
+        
+    }
+    
     func addWorldChain(_ db: Database) throws {
 //        let coin = Coin(uid: "worldcoin-wld",
 //                        name: "Worldcoin (WLD)",
@@ -325,6 +356,7 @@ extension CoinStorage {
                                                 name: "World Chain",
                                                 explorerUrl: "https://worldscan.org")
         try blockchainRecord.insert(db)
+    
         
         let tokenRecord = TokenRecord(coinUid: "ethereum",
                                       blockchainUid: "world-chain",
