@@ -327,7 +327,7 @@ extension CoinStorage {
         
         let tokenRecord = TokenRecord(coinUid: "worldcoin",
                                       blockchainUid: "world-chain",
-                                      type: "L2",
+                                      type: "native",
                                       decimals: 18,
                                       reference: "")
         try tokenRecord.insert(db)
