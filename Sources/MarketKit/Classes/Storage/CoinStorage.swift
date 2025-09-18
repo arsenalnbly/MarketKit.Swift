@@ -89,7 +89,7 @@ class CoinStorage {
         }
         
         migrator.registerMigration("Remove and read worldchain from the Database") { db in
-//            try self.removeWorldChain(db)
+            try self.removeWorldChain(db)
             try self.addWorldChain(db)
         }
         
@@ -326,9 +326,9 @@ extension CoinStorage {
             try Coin.filter(Coin.Columns.uid == "worldcoin" && Coin.Columns.name == "Worldcoin (WLD)").deleteAll(db)
         }
         
-        if let blockchainRecord = try BlockchainRecord.filter(BlockchainRecord.Columns.uid == "world-chain").fetchOne(db) {
-            try BlockchainRecord.filter(BlockchainRecord.Columns.uid == "world-chain").deleteAll(db)
-        }
+//        if let blockchainRecord = try BlockchainRecord.filter(BlockchainRecord.Columns.uid == "world-chain").fetchOne(db) {
+//            try BlockchainRecord.filter(BlockchainRecord.Columns.uid == "world-chain").deleteAll(db)
+//        }
         
     }
     
