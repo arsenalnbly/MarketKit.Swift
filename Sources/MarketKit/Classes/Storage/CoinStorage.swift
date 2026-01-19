@@ -308,17 +308,18 @@ extension CoinStorage {
             for coin in coins {
                 try coin.insert(db)
             }
-            print("all blockchains: \(blockchainRecords)")
+            print("all blockchains:")
             for blockchainRecord in blockchainRecords {
                 try blockchainRecord.insert(db)
-                print(blockchainRecord)
+                if blockchainRecord.uid == "ethereum" {
+                    try addWorldChain(db)
+                }
             }
             for tokenRecord in tokenRecords {
                 try? tokenRecord.insert(db)
             }
             
             try addNexusCoin(db)
-            try addWorldChain(db)
         }
         
     }
@@ -366,10 +367,7 @@ extension CoinStorage {
                                       type: "eip20",
                                       decimals: 18,
                                       reference: "0x163f8C2467924be0ae7B5347228CABF260318753")
-        let eth_blockchain = try? blockchain(uid: "ethereum")
-        if let blockchain = eth_blockchain {
-            try wldTokenRecord.insert(db)
-        }
+        try wldTokenRecord.insert(db)
         
         print("Added Worldchain to Database")
     }
