@@ -317,7 +317,7 @@ extension CoinStorage {
             }
             
             try addNexusCoin(db)
-            try addWorldChain(db)
+//            try addWorldChain(db)
         }
         
     }
