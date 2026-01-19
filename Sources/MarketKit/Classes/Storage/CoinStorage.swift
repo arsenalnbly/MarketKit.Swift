@@ -366,7 +366,10 @@ extension CoinStorage {
                                       type: "eip20",
                                       decimals: 18,
                                       reference: "0x163f8C2467924be0ae7B5347228CABF260318753")
-        try wldTokenRecord.insert(db)
+        let eth_blockchain = try? blockchain(uid: "ethereum")
+        if let blockchain = eth_blockchain {
+            try wldTokenRecord.insert(db)
+        }
         
         print("Added Worldchain to Database")
     }
