@@ -308,6 +308,7 @@ extension CoinStorage {
             for coin in coins {
                 try coin.insert(db)
             }
+            print("all blockchains: \(blockchainRecords)")
             for blockchainRecord in blockchainRecords {
                 try blockchainRecord.insert(db)
                 print(blockchainRecord)
