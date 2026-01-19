@@ -311,15 +311,13 @@ extension CoinStorage {
             print("all blockchains:")
             for blockchainRecord in blockchainRecords {
                 try blockchainRecord.insert(db)
-                if blockchainRecord.uid == "ethereum" {
-                    try addWorldChain(db)
-                }
             }
             for tokenRecord in tokenRecords {
                 try? tokenRecord.insert(db)
             }
             
             try addNexusCoin(db)
+            try addWorldChain(db)
         }
         
     }
@@ -349,21 +347,21 @@ extension CoinStorage {
                         image: "https://cdn.blocksdecoded.com/blockchain-icons/32px/world-chain@3x.png")
         try coin.insert(db)
         
-//        let blockchainRecord = BlockchainRecord(uid: "worldchain",
-//                                                name: "World Chain",
-//                                                explorerUrl: "https://worldscan.org")
-//        try blockchainRecord.insert(db)
+        let blockchainRecord = BlockchainRecord(uid: "worldchain",
+                                                name: "World Chain",
+                                                explorerUrl: "https://worldscan.org")
+        try blockchainRecord.insert(db)
     
         
-//        let tokenRecord = TokenRecord(coinUid: "worldcoin-wld",
-//                                      blockchainUid: "ethereum",
-//                                      type: "eip20",
-//                                      decimals: 18,
-//                                      reference: "")
-//        try tokenRecord.insert(db)
+        let tokenRecord = TokenRecord(coinUid: "worldcoin-wld",
+                                      blockchainUid: "ethereum",
+                                      type: "eip20",
+                                      decimals: 18,
+                                      reference: "")
+        try tokenRecord.insert(db)
         
         let wldTokenRecord = TokenRecord(coinUid: "worldcoin-wld",
-                                      blockchainUid: "ethereum",
+                                      blockchainUid: "worldchain",
                                       type: "eip20",
                                       decimals: 18,
                                       reference: "0x163f8C2467924be0ae7B5347228CABF260318753")
