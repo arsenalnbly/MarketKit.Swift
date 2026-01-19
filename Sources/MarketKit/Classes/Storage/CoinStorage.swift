@@ -88,21 +88,12 @@ class CoinStorage {
             }
         }
         
-        migrator.registerMigration("Remove and read worldchain from the Database") { db in
-            try self.removeWorldChain(db)
-            try self.addWorldChain(db)
-        }
+//        migrator.registerMigration("Remove and read worldchain from the Database") { db in
+//            try self.addWorldChain(db)
+//        }
         
         migrator.registerMigration("Add Nexus coin to Database") { db in
             try self.addNexusCoin(db)
-        }
-        
-        migrator.registerMigration("Add Worldchain to the Database") { db in
-            try self.addWorldChain(db)
-        }
-        
-        migrator.registerMigration("Add AGAIN Worldchain to the Database") { db in
-            try self.addWorldChain(db)
         }
 
         return migrator
@@ -317,7 +308,7 @@ extension CoinStorage {
             }
             
             try addNexusCoin(db)
-//            try addWorldChain(db)
+            try addWorldChain(db)
         }
         
     }
