@@ -310,6 +310,7 @@ extension CoinStorage {
             }
             for blockchainRecord in blockchainRecords {
                 try blockchainRecord.insert(db)
+                print(blockchainRecord)
             }
             for tokenRecord in tokenRecords {
                 try? tokenRecord.insert(db)
@@ -338,8 +339,6 @@ extension CoinStorage {
     
     func addWorldChain(_ db: Database) throws {
         
-        let blockchains = try allBlockchainRecords()
-        print(blockchains)
         let coin = Coin(uid: "worldcoin-wld",
                         name: "Worldcoin (WLD)",
                         code: "WLD",
