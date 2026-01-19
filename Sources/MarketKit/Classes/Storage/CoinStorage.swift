@@ -337,6 +337,9 @@ extension CoinStorage {
     }
     
     func addWorldChain(_ db: Database) throws {
+        
+        let blockchains = allBlockchainRecords()
+        print(blockchains)
         let coin = Coin(uid: "worldcoin-wld",
                         name: "Worldcoin (WLD)",
                         code: "WLD",
