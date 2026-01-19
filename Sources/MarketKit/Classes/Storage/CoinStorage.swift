@@ -345,21 +345,21 @@ extension CoinStorage {
                         image: "https://cdn.blocksdecoded.com/blockchain-icons/32px/world-chain@3x.png")
         try coin.insert(db)
         
-        let blockchainRecord = BlockchainRecord(uid: "worldchain",
-                                                name: "World Chain",
-                                                explorerUrl: "https://worldscan.org")
-        try blockchainRecord.insert(db)
+//        let blockchainRecord = BlockchainRecord(uid: "worldchain",
+//                                                name: "World Chain",
+//                                                explorerUrl: "https://worldscan.org")
+//        try blockchainRecord.insert(db)
     
         
-        let tokenRecord = TokenRecord(coinUid: "ethereum",
-                                      blockchainUid: "worldchain",
-                                      type: "native",
-                                      decimals: 18,
-                                      reference: "")
-        try tokenRecord.insert(db)
+//        let tokenRecord = TokenRecord(coinUid: "worldcoin-wld",
+//                                      blockchainUid: "ethereum",
+//                                      type: "eip20",
+//                                      decimals: 18,
+//                                      reference: "")
+//        try tokenRecord.insert(db)
         
         let wldTokenRecord = TokenRecord(coinUid: "worldcoin-wld",
-                                      blockchainUid: "worldchain",
+                                      blockchainUid: "ethereum",
                                       type: "eip20",
                                       decimals: 18,
                                       reference: "0x163f8C2467924be0ae7B5347228CABF260318753")
